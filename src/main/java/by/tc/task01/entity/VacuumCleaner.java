@@ -1,9 +1,11 @@
 package by.tc.task01.entity;
 
+import by.tc.task01.entity.criteria.SearchCriteria;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
-public class VacuumCleaner extends Appliance{
-	// you may add your own code here
+public class VacuumCleaner extends Appliance {
   private String powerConsumption;
   private String filterType;
   private String bagType;
@@ -16,15 +18,26 @@ public class VacuumCleaner extends Appliance{
     throw new RuntimeException("Set powerConsumption, filterType, bagType, wandType, motorSpeedRegulation, cleaningWidth.");
   }
 
-  public VacuumCleaner(String type, String powerConsumption, String filterType, String bagType,
+  public VacuumCleaner(String powerConsumption, String filterType, String bagType,
       String wandType, String motorSpeedRegulation, String cleaningWidth) {
-    super(type);
     this.powerConsumption = powerConsumption;
     this.filterType = filterType;
     this.bagType = bagType;
     this.wandType = wandType;
     this.motorSpeedRegulation = motorSpeedRegulation;
     this.cleaningWidth = cleaningWidth;
+  }
+
+  @Override
+  public Map<String, Object> obtainParameters() {
+    Map<String,Object> apps = new HashMap<>();
+    apps.put(SearchCriteria.VacuumCleaner.POWER_CONSUMPTION.toString(),powerConsumption);
+    apps.put(SearchCriteria.VacuumCleaner.FILTER_TYPE.toString(),filterType);
+    apps.put(SearchCriteria.VacuumCleaner.BAG_TYPE.toString(),bagType);
+    apps.put(SearchCriteria.VacuumCleaner.WAND_TYPE.toString(),wandType);
+    apps.put(SearchCriteria.VacuumCleaner.MOTOR_SPEED_REGULATION.toString(),motorSpeedRegulation);
+    apps.put(SearchCriteria.VacuumCleaner.CLEANING_WIDTH.toString(),cleaningWidth);
+    return apps;
   }
 
   public String getPowerConsumption() {
@@ -103,13 +116,12 @@ public class VacuumCleaner extends Appliance{
   @Override
   public String toString() {
     return "VacuumCleaner{" +
-        "type='" + super.getType() + '\'' +
-        ", powerConsumption=" + powerConsumption +
-        ", filterType=" + filterType +
+        "powerConsumption='" + powerConsumption + '\'' +
+        ", filterType='" + filterType + '\'' +
         ", bagType='" + bagType + '\'' +
         ", wandType='" + wandType + '\'' +
-        ", motorSpeedRegulation=" + motorSpeedRegulation +
-        ", cleaningWidth=" + cleaningWidth +
+        ", motorSpeedRegulation='" + motorSpeedRegulation + '\'' +
+        ", cleaningWidth='" + cleaningWidth + '\'' +
         '}';
   }
 }

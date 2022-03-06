@@ -1,9 +1,11 @@
 package by.tc.task01.entity;
 
+import by.tc.task01.entity.criteria.SearchCriteria;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 public class Laptop extends Appliance{
-  // you may add your own code here
   private String batteryCapacity;
   private String os;
   private String memoryRom;
@@ -11,9 +13,13 @@ public class Laptop extends Appliance{
   private String cpu;
   private String displayInches;
 
-  public Laptop(String type, String batteryCapacity, String os, String memoryRom,
+  public Laptop() {
+    super();
+    throw new RuntimeException("Set type, batteryCapacity, os, memoryRom, systemMemory, cpu, displayInches.");
+  }
+
+  public Laptop(String batteryCapacity, String os, String memoryRom,
       String systemMemory, String cpu, String displayInches) {
-    super(type);
     this.batteryCapacity = batteryCapacity;
     this.os = os;
     this.memoryRom = memoryRom;
@@ -22,9 +28,16 @@ public class Laptop extends Appliance{
     this.displayInches = displayInches;
   }
 
-  public Laptop() {
-    super();
-    throw new RuntimeException("Set type, batteryCapacity, os, memoryRom, systemMemory, cpu, displayInches.");
+  @Override
+  public Map<String, Object> obtainParameters() {
+    Map<String,Object> apps = new HashMap<>();
+    apps.put(SearchCriteria.Laptop.BATTERY_CAPACITY.toString(),batteryCapacity);
+    apps.put(SearchCriteria.Laptop.OS.toString(),os);
+    apps.put(SearchCriteria.Laptop.MEMORY_ROM.toString(),memoryRom);
+    apps.put(SearchCriteria.Laptop.SYSTEM_MEMORY.toString(),systemMemory);
+    apps.put(SearchCriteria.Laptop.CPU.toString(),cpu);
+    apps.put(SearchCriteria.Laptop.DISPLAY_INCHES.toString(),displayInches);
+    return apps;
   }
 
   public String getBatteryCapacity() {
@@ -102,8 +115,8 @@ public class Laptop extends Appliance{
 
   @Override
   public String toString() {
-    return "Laptop{" + "type='" + super.getType() + '\'' +
-        ", batteryCapacity='" + batteryCapacity + '\'' +
+    return "Laptop{" +
+        "batteryCapacity='" + batteryCapacity + '\'' +
         ", os='" + os + '\'' +
         ", memoryRom='" + memoryRom + '\'' +
         ", systemMemory='" + systemMemory + '\'' +

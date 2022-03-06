@@ -1,9 +1,11 @@
 package by.tc.task01.entity;
 
+import by.tc.task01.entity.criteria.SearchCriteria;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 public class Speakers extends Appliance{
-	// you may add your own code here
   private String powerConsumption;
   private String numberOfSpeakers;
   private String frequencyRange;
@@ -14,13 +16,22 @@ public class Speakers extends Appliance{
     throw new RuntimeException("Set powerConsumption, numberOfSpeakers, frequencyRange, cordLength.");
   }
 
-  public Speakers(String type, String powerConsumption, String numberOfSpeakers,
+  public Speakers(String powerConsumption, String numberOfSpeakers,
       String frequencyRange, String cordLength) {
-    super(type);
     this.powerConsumption = powerConsumption;
     this.numberOfSpeakers = numberOfSpeakers;
     this.frequencyRange = frequencyRange;
     this.cordLength = cordLength;
+  }
+
+  @Override
+  public Map<String, Object> obtainParameters() {
+    Map<String,Object> apps = new HashMap<>();
+    apps.put(SearchCriteria.Speakers.POWER_CONSUMPTION.toString(),powerConsumption);
+    apps.put(SearchCriteria.Speakers.NUMBER_OF_SPEAKERS.toString(),numberOfSpeakers);
+    apps.put(SearchCriteria.Speakers.FREQUENCY_RANGE.toString(),frequencyRange);
+    apps.put(SearchCriteria.Speakers.CORD_LENGTH.toString(),cordLength);
+    return apps;
   }
 
   public String getPowerConsumption() {
@@ -82,11 +93,10 @@ public class Speakers extends Appliance{
   @Override
   public String toString() {
     return "Speakers{" +
-        "type='" + super.getType() + '\'' +
-        ", powerConsumption=" + powerConsumption +
-        ", numberOfSpeakers=" + numberOfSpeakers +
+        "powerConsumption='" + powerConsumption + '\'' +
+        ", numberOfSpeakers='" + numberOfSpeakers + '\'' +
         ", frequencyRange='" + frequencyRange + '\'' +
-        ", cordLength=" + cordLength +
+        ", cordLength='" + cordLength + '\'' +
         '}';
   }
 }

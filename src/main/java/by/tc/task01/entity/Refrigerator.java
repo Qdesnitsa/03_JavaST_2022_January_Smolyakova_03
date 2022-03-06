@@ -1,9 +1,11 @@
 package by.tc.task01.entity;
 
+import by.tc.task01.entity.criteria.SearchCriteria;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 public class Refrigerator extends Appliance{
-	// you may add your own code here
   private String powerConsumption;
   private String weight;
   private String freezerCapacity;
@@ -16,15 +18,26 @@ public class Refrigerator extends Appliance{
     throw new RuntimeException("Set powerConsumption, weight, freezerCapacity, overallCapacity, height, width.");
   }
 
-  public Refrigerator(String type, String powerConsumption, String weight,
+  public Refrigerator(String powerConsumption, String weight,
       String freezerCapacity, String overallCapacity, String height, String width) {
-    super(type);
     this.powerConsumption = powerConsumption;
     this.weight = weight;
     this.freezerCapacity = freezerCapacity;
     this.overallCapacity = overallCapacity;
     this.height = height;
     this.width = width;
+  }
+
+  @Override
+  public Map<String, Object> obtainParameters() {
+    Map<String,Object> apps = new HashMap<>();
+    apps.put(SearchCriteria.Refrigerator.POWER_CONSUMPTION.toString(),powerConsumption);
+    apps.put(SearchCriteria.Refrigerator.WEIGHT.toString(),weight);
+    apps.put(SearchCriteria.Refrigerator.FREEZER_CAPACITY.toString(),freezerCapacity);
+    apps.put(SearchCriteria.Refrigerator.OVERALL_CAPACITY.toString(),overallCapacity);
+    apps.put(SearchCriteria.Refrigerator.HEIGHT.toString(),height);
+    apps.put(SearchCriteria.Refrigerator.WIDTH.toString(),width);
+    return apps;
   }
 
   public String getPowerConsumption() {
@@ -104,13 +117,12 @@ public class Refrigerator extends Appliance{
   @Override
   public String toString() {
     return "Refrigerator{" +
-        "type='" + super.getType() + '\'' +
-        ", powerConsumption=" + powerConsumption +
-        ", weight=" + weight +
-        ", freezerCapacity=" + freezerCapacity +
-        ", overallCapacity=" + overallCapacity +
-        ", height=" + height +
-        ", width=" + width +
+        "powerConsumption='" + powerConsumption + '\'' +
+        ", weight='" + weight + '\'' +
+        ", freezerCapacity='" + freezerCapacity + '\'' +
+        ", overallCapacity='" + overallCapacity + '\'' +
+        ", height='" + height + '\'' +
+        ", width='" + width + '\'' +
         '}';
   }
 }

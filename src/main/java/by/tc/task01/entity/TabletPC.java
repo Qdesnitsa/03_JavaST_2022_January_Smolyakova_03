@@ -1,9 +1,11 @@
 package by.tc.task01.entity;
 
+import by.tc.task01.entity.criteria.SearchCriteria;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 public class TabletPC extends Appliance{
-	// you may add your own code here
   private String batteryCapacity;
   private String displayInches;
   private String memoryRom;
@@ -15,14 +17,24 @@ public class TabletPC extends Appliance{
     throw new RuntimeException("Set batteryCapacity, displayInches, memoryRom, flashMemoryCapacity, color.");
   }
 
-  public TabletPC(String type, String batteryCapacity, String displayInches, String memoryRom,
+  public TabletPC(String batteryCapacity, String displayInches, String memoryRom,
       String flashMemoryCapacity, String color) {
-    super(type);
     this.batteryCapacity = batteryCapacity;
     this.displayInches = displayInches;
     this.memoryRom = memoryRom;
     this.flashMemoryCapacity = flashMemoryCapacity;
     this.color = color;
+  }
+
+  @Override
+  public Map<String, Object> obtainParameters() {
+    Map<String,Object> apps = new HashMap<>();
+    apps.put(SearchCriteria.TabletPC.BATTERY_CAPACITY.toString(),batteryCapacity);
+    apps.put(SearchCriteria.TabletPC.DISPLAY_INCHES.toString(),displayInches);
+    apps.put(SearchCriteria.TabletPC.MEMORY_ROM.toString(),memoryRom);
+    apps.put(SearchCriteria.TabletPC.FLASH_MEMORY_CAPACITY.toString(),flashMemoryCapacity);
+    apps.put(SearchCriteria.TabletPC.COLOR.toString(),color);
+    return apps;
   }
 
   public String getBatteryCapacity() {
@@ -93,11 +105,10 @@ public class TabletPC extends Appliance{
   @Override
   public String toString() {
     return "TabletPC{" +
-        "type='" + super.getType() + '\'' +
-        ", batteryCapacity=" + batteryCapacity +
-        ", displayInches=" + displayInches +
-        ", memoryRom=" + memoryRom +
-        ", flashMemoryCapacity=" + flashMemoryCapacity +
+        "batteryCapacity='" + batteryCapacity + '\'' +
+        ", displayInches='" + displayInches + '\'' +
+        ", memoryRom='" + memoryRom + '\'' +
+        ", flashMemoryCapacity='" + flashMemoryCapacity + '\'' +
         ", color='" + color + '\'' +
         '}';
   }

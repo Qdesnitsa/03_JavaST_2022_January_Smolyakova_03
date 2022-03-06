@@ -1,9 +1,11 @@
 package by.tc.task01.entity;
 
+import by.tc.task01.entity.criteria.SearchCriteria;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 public class Oven extends Appliance{
-  // you may add your own code here
   private String powerConsumption;
   private String weight;
   private String capacity;
@@ -16,15 +18,26 @@ public class Oven extends Appliance{
     throw new RuntimeException("Set powerConsumption, weight, capacity, depth, height, width.");
   }
 
-  public Oven(String type, String powerConsumption, String weight, String capacity, String depth,
+  public Oven(String powerConsumption, String weight, String capacity, String depth,
       String height, String width) {
-    super(type);
     this.powerConsumption = powerConsumption;
     this.weight = weight;
     this.capacity = capacity;
     this.depth = depth;
     this.height = height;
     this.width = width;
+  }
+
+  @Override
+  public Map<String, Object> obtainParameters() {
+    Map<String,Object> apps = new HashMap<>();
+    apps.put(SearchCriteria.Oven.POWER_CONSUMPTION.toString(),powerConsumption);
+    apps.put(SearchCriteria.Oven.WEIGHT.toString(),weight);
+    apps.put(SearchCriteria.Oven.CAPACITY.toString(),capacity);
+    apps.put(SearchCriteria.Oven.DEPTH.toString(),depth);
+    apps.put(SearchCriteria.Oven.HEIGHT.toString(),height);
+    apps.put(SearchCriteria.Oven.WEIGHT.toString(),weight);
+    return apps;
   }
 
   public String getPowerConsumption() {
@@ -100,14 +113,14 @@ public class Oven extends Appliance{
 
   @Override
   public String toString() {
-    return "Oven{" + "type='" + super.getType() + '\'' +
-        ", powerConsumption='" + powerConsumption + '\'' +
+    return "Oven: " +
+        "powerConsumption='" + powerConsumption + '\'' +
         ", weight='" + weight + '\'' +
         ", capacity='" + capacity + '\'' +
         ", depth='" + depth + '\'' +
         ", height='" + height + '\'' +
         ", width='" + width + '\'' +
-        '}';
+        '\n';
   }
 }
 
