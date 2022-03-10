@@ -1,69 +1,50 @@
 package by.tc.task01.entity;
 
-import by.tc.task01.entity.criteria.SearchCriteria;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Objects;
 
 public class Speakers extends Appliance{
-  private String powerConsumption;
-  private String numberOfSpeakers;
-  private String frequencyRange;
-  private String cordLength;
+  private String POWER_CONSUMPTION;
+  private String NUMBER_OF_SPEAKERS;
+  private String FREQUENCY_RANGE;
+  private String CORD_LENGTH;
 
-  public Speakers() {
-    super();
-    throw new RuntimeException("Set powerConsumption, numberOfSpeakers, frequencyRange, cordLength.");
+  public Speakers(String[] resource) {
+    this.POWER_CONSUMPTION = resource[2];
+    this.NUMBER_OF_SPEAKERS = resource[4];
+    this.FREQUENCY_RANGE = resource[6];
+    this.CORD_LENGTH = resource[8];
   }
 
-  public Speakers(String powerConsumption, String numberOfSpeakers,
-      String frequencyRange, String cordLength) {
-    this.powerConsumption = powerConsumption;
-    this.numberOfSpeakers = numberOfSpeakers;
-    this.frequencyRange = frequencyRange;
-    this.cordLength = cordLength;
+  public String getPOWER_CONSUMPTION() {
+    return POWER_CONSUMPTION;
   }
 
-  @Override
-  public Map<String, Object> obtainParameters() {
-    Map<String,Object> apps = new HashMap<>();
-    apps.put(SearchCriteria.Speakers.POWER_CONSUMPTION.toString(),powerConsumption);
-    apps.put(SearchCriteria.Speakers.NUMBER_OF_SPEAKERS.toString(),numberOfSpeakers);
-    apps.put(SearchCriteria.Speakers.FREQUENCY_RANGE.toString(),frequencyRange);
-    apps.put(SearchCriteria.Speakers.CORD_LENGTH.toString(),cordLength);
-    return apps;
+  public void setPOWER_CONSUMPTION(String POWER_CONSUMPTION) {
+    this.POWER_CONSUMPTION = POWER_CONSUMPTION;
   }
 
-  public String getPowerConsumption() {
-    return powerConsumption;
+  public String getNUMBER_OF_SPEAKERS() {
+    return NUMBER_OF_SPEAKERS;
   }
 
-  public void setPowerConsumption(String powerConsumption) {
-    this.powerConsumption = powerConsumption;
+  public void setNUMBER_OF_SPEAKERS(String NUMBER_OF_SPEAKERS) {
+    this.NUMBER_OF_SPEAKERS = NUMBER_OF_SPEAKERS;
   }
 
-  public String getNumberOfSpeakers() {
-    return numberOfSpeakers;
+  public String getFREQUENCY_RANGE() {
+    return FREQUENCY_RANGE;
   }
 
-  public void setNumberOfSpeakers(String numberOfSpeakers) {
-    this.numberOfSpeakers = numberOfSpeakers;
+  public void setFREQUENCY_RANGE(String FREQUENCY_RANGE) {
+    this.FREQUENCY_RANGE = FREQUENCY_RANGE;
   }
 
-  public String getFrequencyRange() {
-    return frequencyRange;
+  public String getCORD_LENGTH() {
+    return CORD_LENGTH;
   }
 
-  public void setFrequencyRange(String frequencyRange) {
-    this.frequencyRange = frequencyRange;
-  }
-
-  public String getCordLength() {
-    return cordLength;
-  }
-
-  public void setCordLength(String cordLength) {
-    this.cordLength = cordLength;
+  public void setCORD_LENGTH(String CORD_LENGTH) {
+    this.CORD_LENGTH = CORD_LENGTH;
   }
 
   @Override
@@ -78,25 +59,25 @@ public class Speakers extends Appliance{
       return false;
     }
     Speakers speakers = (Speakers) o;
-    return Objects.equals(powerConsumption, speakers.powerConsumption)
-        && Objects.equals(numberOfSpeakers, speakers.numberOfSpeakers)
-        && Objects.equals(frequencyRange, speakers.frequencyRange)
-        && Objects.equals(cordLength, speakers.cordLength);
+    return Objects.equals(POWER_CONSUMPTION, speakers.POWER_CONSUMPTION)
+        && Objects.equals(NUMBER_OF_SPEAKERS, speakers.NUMBER_OF_SPEAKERS)
+        && Objects.equals(FREQUENCY_RANGE, speakers.FREQUENCY_RANGE)
+        && Objects.equals(CORD_LENGTH, speakers.CORD_LENGTH);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(super.hashCode(), powerConsumption, numberOfSpeakers, frequencyRange,
-        cordLength);
+    return Objects.hash(super.hashCode(), POWER_CONSUMPTION, NUMBER_OF_SPEAKERS, FREQUENCY_RANGE,
+        CORD_LENGTH);
   }
 
   @Override
   public String toString() {
     return "Speakers{" +
-        "powerConsumption='" + powerConsumption + '\'' +
-        ", numberOfSpeakers='" + numberOfSpeakers + '\'' +
-        ", frequencyRange='" + frequencyRange + '\'' +
-        ", cordLength='" + cordLength + '\'' +
+        "powerConsumption='" + POWER_CONSUMPTION + '\'' +
+        ", numberOfSpeakers='" + NUMBER_OF_SPEAKERS + '\'' +
+        ", frequencyRange='" + FREQUENCY_RANGE + '\'' +
+        ", cordLength='" + CORD_LENGTH + '\'' +
         '}';
   }
 }

@@ -1,80 +1,60 @@
 package by.tc.task01.entity;
 
-import by.tc.task01.entity.criteria.SearchCriteria;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Objects;
 
 public class TabletPC extends Appliance{
-  private String batteryCapacity;
-  private String displayInches;
-  private String memoryRom;
-  private String flashMemoryCapacity;
-  private String color;
+  private String BATTERY_CAPACITY;
+  private String DISPLAY_INCHES;
+  private String MEMORY_ROM;
+  private String FLASH_MEMORY_CAPACITY;
+  private String COLOR;
 
-  public TabletPC() {
-    super();
-    throw new RuntimeException("Set batteryCapacity, displayInches, memoryRom, flashMemoryCapacity, color.");
+  public TabletPC(String[] resource) {
+    this.BATTERY_CAPACITY = resource[2];
+    this.DISPLAY_INCHES = resource[4];
+    this.MEMORY_ROM = resource[6];
+    this.FLASH_MEMORY_CAPACITY = resource[8];
+    this.COLOR = resource[10];
   }
 
-  public TabletPC(String batteryCapacity, String displayInches, String memoryRom,
-      String flashMemoryCapacity, String color) {
-    this.batteryCapacity = batteryCapacity;
-    this.displayInches = displayInches;
-    this.memoryRom = memoryRom;
-    this.flashMemoryCapacity = flashMemoryCapacity;
-    this.color = color;
+  public String getBATTERY_CAPACITY() {
+    return BATTERY_CAPACITY;
   }
 
-  @Override
-  public Map<String, Object> obtainParameters() {
-    Map<String,Object> apps = new HashMap<>();
-    apps.put(SearchCriteria.TabletPC.BATTERY_CAPACITY.toString(),batteryCapacity);
-    apps.put(SearchCriteria.TabletPC.DISPLAY_INCHES.toString(),displayInches);
-    apps.put(SearchCriteria.TabletPC.MEMORY_ROM.toString(),memoryRom);
-    apps.put(SearchCriteria.TabletPC.FLASH_MEMORY_CAPACITY.toString(),flashMemoryCapacity);
-    apps.put(SearchCriteria.TabletPC.COLOR.toString(),color);
-    return apps;
+  public void setBATTERY_CAPACITY(String BATTERY_CAPACITY) {
+    this.BATTERY_CAPACITY = BATTERY_CAPACITY;
   }
 
-  public String getBatteryCapacity() {
-    return batteryCapacity;
+  public String getDISPLAY_INCHES() {
+    return DISPLAY_INCHES;
   }
 
-  public void setBatteryCapacity(String batteryCapacity) {
-    this.batteryCapacity = batteryCapacity;
+  public void setDISPLAY_INCHES(String DISPLAY_INCHES) {
+    this.DISPLAY_INCHES = DISPLAY_INCHES;
   }
 
-  public String getDisplayInches() {
-    return displayInches;
+  public String getMEMORY_ROM() {
+    return MEMORY_ROM;
   }
 
-  public void setDisplayInches(String displayInches) {
-    this.displayInches = displayInches;
+  public void setMEMORY_ROM(String MEMORY_ROM) {
+    this.MEMORY_ROM = MEMORY_ROM;
   }
 
-  public String getMemoryRom() {
-    return memoryRom;
+  public String getFLASH_MEMORY_CAPACITY() {
+    return FLASH_MEMORY_CAPACITY;
   }
 
-  public void setMemoryRom(String memoryRom) {
-    this.memoryRom = memoryRom;
+  public void setFLASH_MEMORY_CAPACITY(String FLASH_MEMORY_CAPACITY) {
+    this.FLASH_MEMORY_CAPACITY = FLASH_MEMORY_CAPACITY;
   }
 
-  public String getFlashMemoryCapacity() {
-    return flashMemoryCapacity;
+  public String getCOLOR() {
+    return COLOR;
   }
 
-  public void setFlashMemoryCapacity(String flashMemoryCapacity) {
-    this.flashMemoryCapacity = flashMemoryCapacity;
-  }
-
-  public String getColor() {
-    return color;
-  }
-
-  public void setColor(String color) {
-    this.color = color;
+  public void setCOLOR(String COLOR) {
+    this.COLOR = COLOR;
   }
 
   @Override
@@ -89,27 +69,27 @@ public class TabletPC extends Appliance{
       return false;
     }
     TabletPC tabletPC = (TabletPC) o;
-    return Objects.equals(batteryCapacity, tabletPC.batteryCapacity)
-        && Objects.equals(displayInches, tabletPC.displayInches)
-        && Objects.equals(memoryRom, tabletPC.memoryRom) && Objects.equals(
-        flashMemoryCapacity, tabletPC.flashMemoryCapacity) && Objects.equals(color,
-        tabletPC.color);
+    return Objects.equals(BATTERY_CAPACITY, tabletPC.BATTERY_CAPACITY)
+        && Objects.equals(DISPLAY_INCHES, tabletPC.DISPLAY_INCHES)
+        && Objects.equals(MEMORY_ROM, tabletPC.MEMORY_ROM) && Objects.equals(
+        FLASH_MEMORY_CAPACITY, tabletPC.FLASH_MEMORY_CAPACITY) && Objects.equals(COLOR,
+        tabletPC.COLOR);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(super.hashCode(), batteryCapacity, displayInches, memoryRom,
-        flashMemoryCapacity, color);
+    return Objects.hash(super.hashCode(), BATTERY_CAPACITY, DISPLAY_INCHES, MEMORY_ROM,
+        FLASH_MEMORY_CAPACITY, COLOR);
   }
 
   @Override
   public String toString() {
     return "TabletPC{" +
-        "batteryCapacity='" + batteryCapacity + '\'' +
-        ", displayInches='" + displayInches + '\'' +
-        ", memoryRom='" + memoryRom + '\'' +
-        ", flashMemoryCapacity='" + flashMemoryCapacity + '\'' +
-        ", color='" + color + '\'' +
+        "batteryCapacity='" + BATTERY_CAPACITY + '\'' +
+        ", displayInches='" + DISPLAY_INCHES + '\'' +
+        ", memoryRom='" + MEMORY_ROM + '\'' +
+        ", flashMemoryCapacity='" + FLASH_MEMORY_CAPACITY + '\'' +
+        ", color='" + COLOR + '\'' +
         '}';
   }
 }

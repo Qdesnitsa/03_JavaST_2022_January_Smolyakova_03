@@ -7,10 +7,11 @@ import by.tc.task01.entity.criteria.Criteria;
 import by.tc.task01.service.ApplianceService;
 import by.tc.task01.service.ServiceFactory;
 import java.util.List;
+import java.util.Locale;
 
 public class Main {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IllegalAccessException {
 		List<Appliance> appliance;
 
 		ServiceFactory factory = ServiceFactory.getInstance();
@@ -19,7 +20,7 @@ public class Main {
 		//////////////////////////////////////////////////////////////////
 
 		Criteria criteriaOven = new Criteria(Oven.class.getSimpleName());//"Oven"
-		criteriaOven.add(Oven.CAPACITY.toString(), String.valueOf(33));
+		criteriaOven.add(Oven.CAPACITY.toString(), 33);
 
 		appliance = service.find(criteriaOven);
 
@@ -28,8 +29,8 @@ public class Main {
 		//////////////////////////////////////////////////////////////////
 
 		criteriaOven = new Criteria(Oven.class.getSimpleName());
-		criteriaOven.add(Oven.HEIGHT.toString(), String.valueOf(200));
-		criteriaOven.add(Oven.DEPTH.toString(), String.valueOf(300));
+		criteriaOven.add(Oven.HEIGHT.toString(), 200);
+		criteriaOven.add(Oven.DEPTH.toString(), 300);
 
 		appliance = service.find(criteriaOven);
 
@@ -39,8 +40,8 @@ public class Main {
 		
 		Criteria criteriaTabletPC = new Criteria(TabletPC.class.getSimpleName());
 		criteriaTabletPC.add(TabletPC.COLOR.toString(), "BLUE");
-		criteriaTabletPC.add(TabletPC.DISPLAY_INCHES.toString(), String.valueOf(14));
-		criteriaTabletPC.add(TabletPC.MEMORY_ROM.toString(), String.valueOf(4));
+		criteriaTabletPC.add(TabletPC.DISPLAY_INCHES.toString(), 14);
+		criteriaTabletPC.add(TabletPC.MEMORY_ROM.toString(), 8000);
 
 		appliance = service.find(criteriaTabletPC);// find(Object...obj)
 

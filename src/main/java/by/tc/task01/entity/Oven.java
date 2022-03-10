@@ -1,91 +1,70 @@
 package by.tc.task01.entity;
 
-import by.tc.task01.entity.criteria.SearchCriteria;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Objects;
 
 public class Oven extends Appliance{
-  private String powerConsumption;
-  private String weight;
-  private String capacity;
-  private String depth;
-  private String height;
-  private String width;
+  private String POWER_CONSUMPTION;
+  private String WEIGHT;
+  private String CAPACITY;
+  private String DEPTH;
+  private String HEIGHT;
+  private String WIDTH;
 
-  public Oven() {
-    super();
-    throw new RuntimeException("Set powerConsumption, weight, capacity, depth, height, width.");
-  }
-
-  public Oven(String powerConsumption, String weight, String capacity, String depth,
-      String height, String width) {
-    this.powerConsumption = powerConsumption;
-    this.weight = weight;
-    this.capacity = capacity;
-    this.depth = depth;
-    this.height = height;
-    this.width = width;
-  }
-
-  @Override
-  public Map<String, Object> obtainParameters() {
-    Map<String,Object> apps = new HashMap<>();
-    apps.put(SearchCriteria.Oven.POWER_CONSUMPTION.toString(),powerConsumption);
-    apps.put(SearchCriteria.Oven.WEIGHT.toString(),weight);
-    apps.put(SearchCriteria.Oven.CAPACITY.toString(),capacity);
-    apps.put(SearchCriteria.Oven.DEPTH.toString(),depth);
-    apps.put(SearchCriteria.Oven.HEIGHT.toString(),height);
-    apps.put(SearchCriteria.Oven.WEIGHT.toString(),weight);
-    return apps;
+  public Oven(String[] resource) {
+    this.POWER_CONSUMPTION = resource[2];
+    this.WEIGHT = resource[4];
+    this.CAPACITY = resource[6];
+    this.DEPTH = resource[8];
+    this.HEIGHT = resource[10];
+    this.WIDTH = resource[12];
   }
 
   public String getPowerConsumption() {
-    return powerConsumption;
+    return POWER_CONSUMPTION;
   }
 
   public void setPowerConsumption(String powerConsumption) {
-    this.powerConsumption = powerConsumption;
+    this.POWER_CONSUMPTION = powerConsumption;
   }
 
-  public String getWeight() {
-    return weight;
+  public String getWEIGHT() {
+    return WEIGHT;
   }
 
-  public void setWeight(String weight) {
-    this.weight = weight;
+  public void setWEIGHT(String WEIGHT) {
+    this.WEIGHT = WEIGHT;
   }
 
-  public String getCapacity() {
-    return capacity;
+  public String getCAPACITY() {
+    return CAPACITY;
   }
 
-  public void setCapacity(String capacity) {
-    this.capacity = capacity;
+  public void setCAPACITY(String CAPACITY) {
+    this.CAPACITY = CAPACITY;
   }
 
-  public String getDepth() {
-    return depth;
+  public String getDEPTH() {
+    return DEPTH;
   }
 
-  public void setDepth(String depth) {
-    this.depth = depth;
+  public void setDEPTH(String DEPTH) {
+    this.DEPTH = DEPTH;
   }
 
-  public String getHeight() {
-    return height;
+  public String getHEIGHT() {
+    return HEIGHT;
   }
 
-  public void setHeight(String height) {
-    this.height = height;
+  public void setHEIGHT(String HEIGHT) {
+    this.HEIGHT = HEIGHT;
   }
 
-  public String getWidth() {
-    return width;
+  public String getWIDTH() {
+    return WIDTH;
   }
 
-  public void setWidth(String width) {
-    this.width = width;
+  public void setWIDTH(String WIDTH) {
+    this.WIDTH = WIDTH;
   }
 
   @Override
@@ -100,26 +79,26 @@ public class Oven extends Appliance{
       return false;
     }
     Oven oven = (Oven) o;
-    return Objects.equals(powerConsumption, oven.powerConsumption)
-        && Objects.equals(weight, oven.weight) && Objects.equals(capacity,
-        oven.capacity) && Objects.equals(depth, oven.depth) && Objects.equals(
-        height, oven.height) && Objects.equals(width, oven.width);
+    return Objects.equals(POWER_CONSUMPTION, oven.POWER_CONSUMPTION)
+        && Objects.equals(WEIGHT, oven.WEIGHT) && Objects.equals(CAPACITY,
+        oven.CAPACITY) && Objects.equals(DEPTH, oven.DEPTH) && Objects.equals(
+        HEIGHT, oven.HEIGHT) && Objects.equals(WIDTH, oven.WIDTH);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(super.hashCode(), powerConsumption, weight, capacity, depth, height, width);
+    return Objects.hash(super.hashCode(), POWER_CONSUMPTION, WEIGHT, CAPACITY, DEPTH, HEIGHT, WIDTH);
   }
 
   @Override
   public String toString() {
     return "Oven: " +
-        "powerConsumption='" + powerConsumption + '\'' +
-        ", weight='" + weight + '\'' +
-        ", capacity='" + capacity + '\'' +
-        ", depth='" + depth + '\'' +
-        ", height='" + height + '\'' +
-        ", width='" + width + '\'' +
+        "powerConsumption='" + POWER_CONSUMPTION + '\'' +
+        ", weight='" + WEIGHT + '\'' +
+        ", capacity='" + CAPACITY + '\'' +
+        ", depth='" + DEPTH + '\'' +
+        ", height='" + HEIGHT + '\'' +
+        ", width='" + WIDTH + '\'' +
         '\n';
   }
 }

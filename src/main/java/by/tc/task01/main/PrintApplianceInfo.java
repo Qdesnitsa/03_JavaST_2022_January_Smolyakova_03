@@ -1,18 +1,21 @@
 package by.tc.task01.main;
 
 import by.tc.task01.entity.Appliance;
+import java.lang.reflect.Field;
 import java.util.List;
-import java.util.Map;
 
 public class PrintApplianceInfo {
+	private static Field[] fields;
 	
-	public static void print(List<Appliance> appliance) {
+	public static void print(List<Appliance> appliance) throws IllegalAccessException {
 		if (!appliance.isEmpty()) {
 			StringBuilder stringBuilder = new StringBuilder();
 			for (Appliance elem : appliance) {
+				fields = elem.getClass().getDeclaredFields();
 				stringBuilder.append(elem.getClass().getSimpleName()).append(": ");
-				for (Map.Entry<String,Object> param : elem.obtainParameters().entrySet()) {
-					stringBuilder.append(param.getKey()).append("=").append(param.getValue()).append(" ");
+				for (Field field : fields) {
+					field.setAccessible(true);
+					stringBuilder.append(field.getName()).append("=").append(field.get(elem)).append(" ");
 				}
 				stringBuilder.append("-> is available.\n");
 			}

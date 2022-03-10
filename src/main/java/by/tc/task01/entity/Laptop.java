@@ -1,91 +1,70 @@
 package by.tc.task01.entity;
 
-import by.tc.task01.entity.criteria.SearchCriteria;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Objects;
 
 public class Laptop extends Appliance{
-  private String batteryCapacity;
-  private String os;
-  private String memoryRom;
-  private String systemMemory;
-  private String cpu;
-  private String displayInches;
+  private String BATTERY_CAPACITY;
+  private String OS;
+  private String MEMORY_ROM;
+  private String SYSTEM_MEMORY;
+  private String CPU;
+  private String DISPLAY_INCHES;
 
-  public Laptop() {
-    super();
-    throw new RuntimeException("Set type, batteryCapacity, os, memoryRom, systemMemory, cpu, displayInches.");
+  public Laptop(String[] resource) {
+    this.BATTERY_CAPACITY = resource[2];
+    this.OS = resource[4];
+    this.MEMORY_ROM = resource[6];
+    this.SYSTEM_MEMORY = resource[8];
+    this.CPU = resource[10];
+    this.DISPLAY_INCHES = resource[12];
   }
 
-  public Laptop(String batteryCapacity, String os, String memoryRom,
-      String systemMemory, String cpu, String displayInches) {
-    this.batteryCapacity = batteryCapacity;
-    this.os = os;
-    this.memoryRom = memoryRom;
-    this.systemMemory = systemMemory;
-    this.cpu = cpu;
-    this.displayInches = displayInches;
+  public String getBATTERY_CAPACITY() {
+    return BATTERY_CAPACITY;
   }
 
-  @Override
-  public Map<String, Object> obtainParameters() {
-    Map<String,Object> apps = new HashMap<>();
-    apps.put(SearchCriteria.Laptop.BATTERY_CAPACITY.toString(),batteryCapacity);
-    apps.put(SearchCriteria.Laptop.OS.toString(),os);
-    apps.put(SearchCriteria.Laptop.MEMORY_ROM.toString(),memoryRom);
-    apps.put(SearchCriteria.Laptop.SYSTEM_MEMORY.toString(),systemMemory);
-    apps.put(SearchCriteria.Laptop.CPU.toString(),cpu);
-    apps.put(SearchCriteria.Laptop.DISPLAY_INCHES.toString(),displayInches);
-    return apps;
+  public void setBATTERY_CAPACITY(String BATTERY_CAPACITY) {
+    this.BATTERY_CAPACITY = BATTERY_CAPACITY;
   }
 
-  public String getBatteryCapacity() {
-    return batteryCapacity;
+  public String getOS() {
+    return OS;
   }
 
-  public void setBatteryCapacity(String batteryCapacity) {
-    this.batteryCapacity = batteryCapacity;
+  public void setOS(String OS) {
+    this.OS = OS;
   }
 
-  public String getOs() {
-    return os;
+  public String getMEMORY_ROM() {
+    return MEMORY_ROM;
   }
 
-  public void setOs(String os) {
-    this.os = os;
+  public void setMEMORY_ROM(String MEMORY_ROM) {
+    this.MEMORY_ROM = MEMORY_ROM;
   }
 
-  public String getMemoryRom() {
-    return memoryRom;
+  public String getSYSTEM_MEMORY() {
+    return SYSTEM_MEMORY;
   }
 
-  public void setMemoryRom(String memoryRom) {
-    this.memoryRom = memoryRom;
+  public void setSYSTEM_MEMORY(String SYSTEM_MEMORY) {
+    this.SYSTEM_MEMORY = SYSTEM_MEMORY;
   }
 
-  public String getSystemMemory() {
-    return systemMemory;
+  public String getCPU() {
+    return CPU;
   }
 
-  public void setSystemMemory(String systemMemory) {
-    this.systemMemory = systemMemory;
+  public void setCPU(String CPU) {
+    this.CPU = CPU;
   }
 
-  public String getCpu() {
-    return cpu;
+  public String getDISPLAY_INCHES() {
+    return DISPLAY_INCHES;
   }
 
-  public void setCpu(String cpu) {
-    this.cpu = cpu;
-  }
-
-  public String getDisplayInches() {
-    return displayInches;
-  }
-
-  public void setDisplayInches(String displayInches) {
-    this.displayInches = displayInches;
+  public void setDISPLAY_INCHES(String DISPLAY_INCHES) {
+    this.DISPLAY_INCHES = DISPLAY_INCHES;
   }
 
   @Override
@@ -100,28 +79,28 @@ public class Laptop extends Appliance{
       return false;
     }
     Laptop laptop = (Laptop) o;
-    return Objects.equals(batteryCapacity, laptop.batteryCapacity)
-        && Objects.equals(os, laptop.os) && Objects.equals(memoryRom,
-        laptop.memoryRom) && Objects.equals(systemMemory, laptop.systemMemory)
-        && Objects.equals(cpu, laptop.cpu) && Objects.equals(displayInches,
-        laptop.displayInches);
+    return Objects.equals(BATTERY_CAPACITY, laptop.BATTERY_CAPACITY)
+        && Objects.equals(OS, laptop.OS) && Objects.equals(MEMORY_ROM,
+        laptop.MEMORY_ROM) && Objects.equals(SYSTEM_MEMORY, laptop.SYSTEM_MEMORY)
+        && Objects.equals(CPU, laptop.CPU) && Objects.equals(DISPLAY_INCHES,
+        laptop.DISPLAY_INCHES);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(super.hashCode(), batteryCapacity, os, memoryRom, systemMemory, cpu,
-        displayInches);
+    return Objects.hash(super.hashCode(), BATTERY_CAPACITY, OS, MEMORY_ROM, SYSTEM_MEMORY, CPU,
+        DISPLAY_INCHES);
   }
 
   @Override
   public String toString() {
     return "Laptop{" +
-        "batteryCapacity='" + batteryCapacity + '\'' +
-        ", os='" + os + '\'' +
-        ", memoryRom='" + memoryRom + '\'' +
-        ", systemMemory='" + systemMemory + '\'' +
-        ", cpu='" + cpu + '\'' +
-        ", displayInches='" + displayInches + '\'' +
+        "batteryCapacity='" + BATTERY_CAPACITY + '\'' +
+        ", os='" + OS + '\'' +
+        ", memoryRom='" + MEMORY_ROM + '\'' +
+        ", systemMemory='" + SYSTEM_MEMORY + '\'' +
+        ", cpu='" + CPU + '\'' +
+        ", displayInches='" + DISPLAY_INCHES + '\'' +
         '}';
   }
 }

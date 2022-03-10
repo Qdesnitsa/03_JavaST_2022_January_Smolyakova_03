@@ -18,8 +18,7 @@ public class ApplianceDAOImpl implements ApplianceDAO {
 
 	@Override
 	public List<Appliance> find(Criteria criteria) {
-		Map<String, Object> map = new HashMap<>();
-		// you may add your own code here
+		Map<String, String> map = new HashMap<>();
 		String filePath = "./src/main/resources/appliances_db.txt";
 
 		List<Appliance> appliances = new ArrayList<>();
@@ -38,39 +37,10 @@ public class ApplianceDAOImpl implements ApplianceDAO {
 					if (!map.isEmpty()) {
 						int count = 0;
 						for (Entry<String, Object> entry : criteria.getCriteria().entrySet()) {
-							for (Entry<String, Object> elem : map.entrySet()) {
-								if ((entry.getKey().equals(elem.getKey())) && (entry.getValue()
-										.equals(elem.getValue())) && (++count == criteria.getCriteria().size())) {
-									switch (criteria.getGroupSearchName()) {
-										case "Oven":
-											appliances.add(
-													new Oven(parameters[2], parameters[4], parameters[6], parameters[8],
-															parameters[10], parameters[12]));
-											break;
-										case "Laptop":
-											appliances.add(
-													new Laptop(parameters[2], parameters[4], parameters[6], parameters[8],
-															parameters[10], parameters[12]));
-											break;
-										case "Refrigerator":
-											appliances.add(new Refrigerator(parameters[2], parameters[4], parameters[6],
-													parameters[8], parameters[10], parameters[12]));
-											break;
-										case "Speakers":
-											appliances.add(
-													new Speakers(parameters[2], parameters[4], parameters[6], parameters[8]));
-											break;
-										case "TabletPC":
-											appliances.add(
-													new TabletPC(parameters[2], parameters[4], parameters[6], parameters[8],
-															parameters[10]));
-											break;
-										case "VacuumCleaner":
-											appliances.add(new VacuumCleaner(parameters[2], parameters[4], parameters[6],
-													parameters[8], parameters[10], parameters[12]));
-											break;
-									}
-								}
+							for (Entry<String, String> elem : map.entrySet()) {
+								if ((entry.getKey().equals(elem.getKey())) && (entry.getValue().toString().equalsIgnoreCase(elem.getValue()))
+										&& (++count == criteria.getCriteria().size()))
+									initAppliance(criteria, parameters, appliances);
 							}
 						}
 					}
@@ -80,6 +50,31 @@ public class ApplianceDAOImpl implements ApplianceDAO {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
+		}
+		return appliances;
+	}
+
+	public List<Appliance> initAppliance(Criteria criteria, String[] parameters,
+			List<Appliance> appliances) {
+		switch (criteria.getGroupSearchName()) {
+			case "Oven":
+				appliances.add(new Oven(parameters));
+				break;
+			case "Laptop":
+				appliances.add(new Laptop(parameters));
+				break;
+			case "Refrigerator":
+				appliances.add(new Refrigerator(parameters));
+				break;
+			case "Speakers":
+				appliances.add(new Speakers(parameters));
+				break;
+			case "TabletPC":
+				appliances.add(new TabletPC(parameters));
+				break;
+			case "VacuumCleaner":
+				appliances.add(new VacuumCleaner(parameters));
+				break;
 		}
 		return appliances;
 	}
