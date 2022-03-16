@@ -6,7 +6,7 @@ import java.util.List;
 
 public class PrintApplianceInfo {
 	private static Field[] fields;
-	
+
 	public static void print(List<Appliance> appliance) throws IllegalAccessException {
 		if (!appliance.isEmpty()) {
 			StringBuilder stringBuilder = new StringBuilder();
