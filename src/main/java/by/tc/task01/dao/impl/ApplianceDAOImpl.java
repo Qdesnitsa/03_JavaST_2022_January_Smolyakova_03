@@ -1,5 +1,6 @@
 package by.tc.task01.dao.impl;
 
+import static by.tc.task01.construction.ConstructorAppImpl.*;
 import by.tc.task01.dao.ApplianceDAO;
 import by.tc.task01.entity.*;
 import by.tc.task01.entity.criteria.Criteria;
@@ -12,20 +13,19 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Objects;
 
 public class ApplianceDAOImpl implements ApplianceDAO {
 
 	private static final String APPS_FILE = "appliances_db.txt";
-	BufferedReader reader;
+	private static BufferedReader reader;
+	private static Map<String, Object> properAppFromDB = new HashMap<>();
 
 	@Override
 	public List<Appliance> find(Criteria criteria) {
-		Map<String, Object> map;
+
 		String filePath = Objects.requireNonNull(getClass().getClassLoader().getResource(APPS_FILE))
 				.getPath();
-
 		List<Appliance> appliances = new ArrayList<>();
 
 		try {
@@ -35,17 +35,9 @@ public class ApplianceDAOImpl implements ApplianceDAO {
 			String line;
 			while (reader.ready()) {
 				line = reader.readLine();
-				map = makeMap(line,criteria);
-					if (!map.isEmpty()) {
-						int count = 0;
-						for (Entry<String, Object> entry : criteria.getCriteria().entrySet()) {
-							for (Entry<String, Object> elem : map.entrySet()) {
-								if ((entry.getKey().equals(elem.getKey())) && (entry.getValue().toString()
-										.equalsIgnoreCase(String.valueOf(elem.getValue())))
-										&& (++count == criteria.getCriteria().size()))
-									initAppliance(map,appliances,criteria);
-						}
-					}
+				properAppFromDB = makeMap(line,criteria);
+					if (!properAppFromDB.isEmpty() && criteria.compareMaps(properAppFromDB)) {
+						initAppliance(appliances,criteria, properAppFromDB);
 				}
 			}
 		} catch (FileNotFoundException e) {
@@ -62,38 +54,41 @@ public class ApplianceDAOImpl implements ApplianceDAO {
 		return appliances;
 	}
 
-	public Map<String,Object> makeMap(String line, Criteria criteria) {
-	Map<String,Object> map = new HashMap<>();
-		String[] parameters = line.replaceAll("(;|:|=|,|\\s+){1,}", " ").split(" ");
-		if (criteria.getGroupSearchName().equals(parameters[0])) {
-			for (int i = 1; i < parameters.length; i += 2) {
-				map.put(parameters[i], parameters[i + 1]);
-			}
+	public String obtainFirstWord(String line) {
+		String word = "";
+		if (!line.isEmpty()) {
+			int i = line.indexOf(' ');
+			word = line.substring(0, i);
 		}
-		return map;
+		return word;
 	}
 
-	public List<Appliance> initAppliance(Map<String,Object> map,List<Appliance> appliances, Criteria criteria) {
-		switch (criteria.getGroupSearchName()) {
-			case "Oven":
-				appliances.add(Constructor.constructOven(map));
-				break;
-//			case "Laptop":
-//				appliances.add(new Laptop(parameters));
-//				break;
-//			case "Refrigerator":
-//				appliances.add(new Refrigerator(parameters));
-//				break;
-//			case "Speakers":
-//				appliances.add(new Speakers(parameters));
-//				break;
-//			case "TabletPC":
-//				appliances.add(new TabletPC(parameters));
-//				break;
-//			case "VacuumCleaner":
-//				appliances.add(new VacuumCleaner(parameters));
-//				break;
+
+	private static final String SIGNS_TO_REPLACE = "(;|:|=|,|\\s)+";
+	private static final String NEW_DELIMETER = " ";
+	public Map<String,Object> makeMap(String line, Criteria criteria) {
+		Map<String, Object> paramsValuesDB = new HashMap<>();
+		if (criteria.compareGroupName(obtainFirstWord(line))) {
+			String[] parameters = line.replaceAll(SIGNS_TO_REPLACE, NEW_DELIMETER).split(NEW_DELIMETER);
+			for (int i = 1; i < parameters.length; i += 2) {
+				paramsValuesDB.put(parameters[i], parameters[i + 1]);
+			}
 		}
+		return paramsValuesDB;
+	}
+
+	private static final Map<String, Object> PROPER_APP_CREATION = new HashMap<>();
+	public List<Appliance> initAppliance(List<Appliance> appliances, Criteria criteria, Map<String,Object> map) {
+		{
+			PROPER_APP_CREATION.put(Oven.class.getSimpleName(),getInstance().constructOven(map,criteria));
+			PROPER_APP_CREATION.put(TabletPC.class.getSimpleName(),getInstance().constructTabletPC(map,criteria));
+			PROPER_APP_CREATION.put(Laptop.class.getSimpleName(),getInstance().constructLaptop(map,criteria));
+			PROPER_APP_CREATION.put(Refrigerator.class.getSimpleName(),getInstance().constructRefrigerator(map,criteria));
+			PROPER_APP_CREATION.put(Speakers.class.getSimpleName(),getInstance().constructSpeakers(map,criteria));
+			PROPER_APP_CREATION.put(VacuumCleaner.class.getSimpleName(),getInstance().constructVacuumCleaner(map,criteria));
+		}
+
+			appliances.add((Appliance) PROPER_APP_CREATION.get(criteria.getGroupSearchName()));
 		return appliances;
 	}
 }

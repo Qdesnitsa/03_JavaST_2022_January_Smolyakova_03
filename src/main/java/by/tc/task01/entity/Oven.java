@@ -1,10 +1,9 @@
 package by.tc.task01.entity;
 
-import java.util.Locale.Builder;
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Oven implements Appliance {
-
+public class Oven implements Appliance, Serializable {
   private int powerConsumption;
   private int weight;
   private int capacity;
@@ -12,10 +11,10 @@ public class Oven implements Appliance {
   private double height;
   private double width;
 
-  public Oven() {
+  private Oven() {
   }
 
-  public Oven(String type, int powerConsumption, int weight, int capacity, int depth, double height,
+  public Oven(int powerConsumption, int weight, int capacity, int depth, double height,
       double width) {
     this.powerConsumption = powerConsumption;
     this.weight = weight;
@@ -29,48 +28,24 @@ public class Oven implements Appliance {
     return powerConsumption;
   }
 
-  public void setPowerConsumption(int powerConsumption) {
-    this.powerConsumption = powerConsumption;
-  }
-
   public int getWeight() {
     return weight;
-  }
-
-  public void setWeight(int weight) {
-    this.weight = weight;
   }
 
   public int getCapacity() {
     return capacity;
   }
 
-  public void setCapacity(int capacity) {
-    this.capacity = capacity;
-  }
-
   public int getDepth() {
     return depth;
-  }
-
-  public void setDepth(int depth) {
-    this.depth = depth;
   }
 
   public double getHeight() {
     return height;
   }
 
-  public void setHeight(double height) {
-    this.height = height;
-  }
-
   public double getWidth() {
     return width;
-  }
-
-  public void setWidth(double width) {
-    this.width = width;
   }
 
   @Override
@@ -102,14 +77,14 @@ public class Oven implements Appliance {
         ", depth=" + depth +
         ", height=" + height +
         ", width=" + width +
-        '}';
+        ';';
   }
 
   public static Builder newBuilder() {
     return new Oven().new Builder();
   }
 
-  public class Builder {
+  public class Builder{
 
     private Builder() {
     }

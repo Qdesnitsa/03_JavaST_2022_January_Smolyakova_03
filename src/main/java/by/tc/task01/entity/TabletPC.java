@@ -1,14 +1,17 @@
 package by.tc.task01.entity;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class TabletPC implements Appliance {
-
-  private double batteryCapacity;
+public class TabletPC implements Appliance, Serializable {
+  private int batteryCapacity;
   private int displayInches;
   private int memoryRom;
   private int flashMemoryCapacity;
   private String color;
+
+  private TabletPC(){
+  }
 
   public TabletPC(int batteryCapacity, int displayInches, int memoryRom, int flashMemoryCapacity,
       String color) {
@@ -23,40 +26,20 @@ public class TabletPC implements Appliance {
     return batteryCapacity;
   }
 
-  public void setBatteryCapacity(double batteryCapacity) {
-    this.batteryCapacity = batteryCapacity;
-  }
-
   public int getDisplayInches() {
     return displayInches;
-  }
-
-  public void setDisplayInches(int displayInches) {
-    this.displayInches = displayInches;
   }
 
   public int getMemoryRom() {
     return memoryRom;
   }
 
-  public void setMemoryRom(int memoryRom) {
-    this.memoryRom = memoryRom;
-  }
-
   public int getFlashMemoryCapacity() {
     return flashMemoryCapacity;
   }
 
-  public void setFlashMemoryCapacity(int flashMemoryCapacity) {
-    this.flashMemoryCapacity = flashMemoryCapacity;
-  }
-
   public String getColor() {
     return color;
-  }
-
-  public void setColor(String color) {
-    this.color = color;
   }
 
   @Override
@@ -87,6 +70,45 @@ public class TabletPC implements Appliance {
         ", memoryRom=" + memoryRom +
         ", flashMemoryCapacity=" + flashMemoryCapacity +
         ", color='" + color + '\'' +
-        '}';
+        ';';
+  }
+
+  public static Builder newBuilder() {
+    return new TabletPC().new Builder();
+  }
+
+  public class Builder implements Appliance{
+
+    private Builder() {
+    }
+
+    public Builder setBatteryCapacity(int batteryCapacity) {
+      TabletPC.this.batteryCapacity = batteryCapacity;
+      return this;
+    }
+
+    public Builder setDisplayInches(int displayInches) {
+      TabletPC.this.displayInches = displayInches;
+      return this;
+    }
+
+    public Builder setMemoryRom(int memoryRom) {
+      TabletPC.this.memoryRom = memoryRom;
+      return this;
+    }
+
+    public Builder setFlashMemoryCapacity(int flashMemoryCapacity) {
+      TabletPC.this.flashMemoryCapacity = flashMemoryCapacity;
+      return this;
+    }
+
+    public Builder setColor(String color) {
+      TabletPC.this.color = color;
+      return this;
+    }
+
+    public TabletPC build() {
+      return TabletPC.this;
+    }
   }
 }

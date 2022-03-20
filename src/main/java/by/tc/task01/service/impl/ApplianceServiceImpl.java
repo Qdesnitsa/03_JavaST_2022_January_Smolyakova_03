@@ -6,6 +6,7 @@ import by.tc.task01.entity.Appliance;
 import by.tc.task01.entity.criteria.Criteria;
 import by.tc.task01.service.ApplianceService;
 import by.tc.task01.service.validation.Validator;
+import java.util.Collections;
 import java.util.List;
 
 public class ApplianceServiceImpl implements ApplianceService{
@@ -13,7 +14,7 @@ public class ApplianceServiceImpl implements ApplianceService{
 	@Override
 	public List<Appliance> find(Criteria criteria) {
 		if (!Validator.criteriaValidator(criteria)) {
-			return null;
+			return Collections.emptyList();
 		}
 		
 		DAOFactory factory = DAOFactory.getInstance();
@@ -23,5 +24,4 @@ public class ApplianceServiceImpl implements ApplianceService{
 		
 		return appliance;
 	}
-
 }

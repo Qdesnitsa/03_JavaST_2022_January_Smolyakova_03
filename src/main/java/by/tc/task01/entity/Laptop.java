@@ -1,22 +1,27 @@
 package by.tc.task01.entity;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Laptop implements Appliance{
+public class Laptop implements Appliance, Serializable {
+
   private double batteryCapacity;
-  private String os;
+  private String OS;
   private int memoryRom;
   private int systemMemory;
-  private double cpu;
+  private double CPU;
   private int displayInches;
+
+  private Laptop() {
+  }
 
   public Laptop(double batteryCapacity, String os, int memoryRom, int systemMemory, double cpu,
       int displayInches) {
     this.batteryCapacity = batteryCapacity;
-    this.os = os;
+    this.OS = os;
     this.memoryRom = memoryRom;
     this.systemMemory = systemMemory;
-    this.cpu = cpu;
+    this.CPU = cpu;
     this.displayInches = displayInches;
   }
 
@@ -24,48 +29,24 @@ public class Laptop implements Appliance{
     return batteryCapacity;
   }
 
-  public void setBatteryCapacity(double batteryCapacity) {
-    this.batteryCapacity = batteryCapacity;
-  }
-
-  public String getOs() {
-    return os;
-  }
-
-  public void setOs(String os) {
-    this.os = os;
+  public String getOS() {
+    return OS;
   }
 
   public int getMemoryRom() {
     return memoryRom;
   }
 
-  public void setMemoryRom(int memoryRom) {
-    this.memoryRom = memoryRom;
-  }
-
   public int getSystemMemory() {
     return systemMemory;
   }
 
-  public void setSystemMemory(int systemMemory) {
-    this.systemMemory = systemMemory;
-  }
-
-  public double getCpu() {
-    return cpu;
-  }
-
-  public void setCpu(double cpu) {
-    this.cpu = cpu;
+  public double getCPU() {
+    return CPU;
   }
 
   public int getDisplayInches() {
     return displayInches;
-  }
-
-  public void setDisplayInches(int displayInches) {
-    this.displayInches = displayInches;
   }
 
   @Override
@@ -79,24 +60,68 @@ public class Laptop implements Appliance{
     Laptop laptop = (Laptop) o;
     return Double.compare(laptop.batteryCapacity, batteryCapacity) == 0
         && memoryRom == laptop.memoryRom && systemMemory == laptop.systemMemory
-        && Double.compare(laptop.cpu, cpu) == 0 && displayInches == laptop.displayInches
-        && Objects.equals(os, laptop.os);
+        && Double.compare(laptop.CPU, CPU) == 0 && displayInches == laptop.displayInches
+        && Objects.equals(OS, laptop.OS);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(batteryCapacity, os, memoryRom, systemMemory, cpu, displayInches);
+    return Objects.hash(batteryCapacity, OS, memoryRom, systemMemory, CPU, displayInches);
   }
 
   @Override
   public String toString() {
     return getClass().getSimpleName() + " : " +
         "batteryCapacity=" + batteryCapacity +
-        ", os='" + os + '\'' +
+        ", OS='" + OS + '\'' +
         ", memoryRom=" + memoryRom +
         ", systemMemory=" + systemMemory +
-        ", cpu=" + cpu +
+        ", CPU=" + CPU +
         ", displayInches=" + displayInches +
-        '}';
+        ';';
+  }
+
+  public static Builder newBuilder() {
+    return new Laptop().new Builder();
+  }
+
+  public class Builder {
+
+    private Builder() {
+    }
+
+    public Builder setBatteryCapacity(double batteryCapacity) {
+      Laptop.this.batteryCapacity = batteryCapacity;
+      return this;
+    }
+
+    public Builder setOS(String os) {
+      Laptop.this.OS = os;
+      return this;
+    }
+
+    public Builder setMemoryRom(int memoryRom) {
+      Laptop.this.memoryRom = memoryRom;
+      return this;
+    }
+
+    public Builder setSystemMemory(int systemMemory) {
+      Laptop.this.systemMemory = systemMemory;
+      return this;
+    }
+
+    public Builder setCPU(double cpu) {
+      Laptop.this.CPU = cpu;
+      return this;
+    }
+
+    public Builder setDisplayInches(int displayInches) {
+      Laptop.this.displayInches = displayInches;
+      return this;
+    }
+
+    public Laptop build() {
+      return Laptop.this;
+    }
   }
 }

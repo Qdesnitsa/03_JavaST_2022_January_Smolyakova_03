@@ -6,10 +6,14 @@ import java.util.List;
 
 public class PrintApplianceInfo {
 	private static Field[] fields;
+	private static String numberOfItems = "Number of items available: ";
+	private static String available = "-> is available.\n";
+	private static String notAvailable = "Appliance is not available.\n";
 
 	public static void print(List<Appliance> appliance) throws IllegalAccessException {
 		if (!appliance.isEmpty()) {
 			StringBuilder stringBuilder = new StringBuilder();
+			stringBuilder.append(numberOfItems).append(appliance.size()).append("\n");
 			for (Appliance elem : appliance) {
 				fields = elem.getClass().getDeclaredFields();
 				stringBuilder.append(elem.getClass().getSimpleName()).append(": ");
@@ -17,11 +21,11 @@ public class PrintApplianceInfo {
 					field.setAccessible(true);
 					stringBuilder.append(field.getName()).append("=").append(field.get(elem)).append(" ");
 				}
-				stringBuilder.append("-> is available.\n");
+				stringBuilder.append(available);
 			}
 			System.out.println(stringBuilder);
 		} else {
-			System.out.println("Appliance is not available.");
+			System.out.println(notAvailable);
 		}
 	}
 }

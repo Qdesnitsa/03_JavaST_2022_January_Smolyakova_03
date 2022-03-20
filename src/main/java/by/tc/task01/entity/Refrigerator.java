@@ -1,14 +1,18 @@
 package by.tc.task01.entity;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Refrigerator implements Appliance{
+public class Refrigerator implements Appliance, Serializable {
   private int powerConsumption;
   private int weight;
   private int freezerCapacity;
   private double overallCapacity;
   private int height;
   private int width;
+
+  public Refrigerator() {
+  }
 
   public Refrigerator(int powerConsumption, int weight, int freezerCapacity, double overallCapacity,
       int height, int width) {
@@ -24,48 +28,24 @@ public class Refrigerator implements Appliance{
     return powerConsumption;
   }
 
-  public void setPowerConsumption(int powerConsumption) {
-    this.powerConsumption = powerConsumption;
-  }
-
   public int getWeight() {
     return weight;
-  }
-
-  public void setWeight(int weight) {
-    this.weight = weight;
   }
 
   public int getFreezerCapacity() {
     return freezerCapacity;
   }
 
-  public void setFreezerCapacity(int freezerCapacity) {
-    this.freezerCapacity = freezerCapacity;
-  }
-
   public double getOverallCapacity() {
     return overallCapacity;
-  }
-
-  public void setOverallCapacity(double overallCapacity) {
-    this.overallCapacity = overallCapacity;
   }
 
   public int getHeight() {
     return height;
   }
 
-  public void setHeight(int height) {
-    this.height = height;
-  }
-
   public int getWidth() {
     return width;
-  }
-
-  public void setWidth(int width) {
-    this.width = width;
   }
 
   @Override
@@ -98,5 +78,49 @@ public class Refrigerator implements Appliance{
         ", height=" + height +
         ", width=" + width +
         '}';
+  }
+
+  public static Builder newBuilder() {
+    return new Refrigerator().new Builder();
+  }
+
+  public class Builder {
+
+    private Builder() {
+    }
+
+    public Builder setPowerConsumption(int powerConsumption) {
+      Refrigerator.this.powerConsumption = powerConsumption;
+      return this;
+    }
+
+    public Builder setWeight(int weight) {
+      Refrigerator.this.weight = weight;
+      return this;
+    }
+
+    public Builder setFreezerCapacity(int freezerCapacity) {
+      Refrigerator.this.freezerCapacity = freezerCapacity;
+      return this;
+    }
+
+    public Builder setOverallCapacity(double overallCapacity) {
+      Refrigerator.this.overallCapacity = overallCapacity;
+      return this;
+    }
+
+    public Builder setHeight(int height) {
+      Refrigerator.this.height = height;
+      return this;
+    }
+
+    public Builder setWidth(int width) {
+      Refrigerator.this.width = width;
+      return this;
+    }
+
+    public Refrigerator build() {
+      return Refrigerator.this;
+    }
   }
 }
