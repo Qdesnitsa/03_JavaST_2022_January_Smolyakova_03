@@ -4,7 +4,7 @@ import by.tc.task01.entity.Appliance;
 import java.util.List;
 
 public class PrintApplianceInfo {
-	private static String available = "-> is available.\n";
+	private static String available = " -> is available.\n";
 	private static String notAvailable = "Appliance is not available.\n";
 
 	public static void print(List<Appliance> appliance) {

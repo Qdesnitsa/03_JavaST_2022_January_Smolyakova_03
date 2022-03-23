@@ -1,6 +1,5 @@
 package by.tc.task01.entity;
 
-import by.tc.task01.entity.TabletPC.Builder;
 import java.io.Serializable;
 import java.util.Objects;
 
