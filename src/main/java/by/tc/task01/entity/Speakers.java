@@ -1,9 +1,10 @@
 package by.tc.task01.entity;
 
+import by.tc.task01.entity.TabletPC.Builder;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class Speakers implements Appliance, Serializable {
+public class Speakers extends Appliance implements Serializable {
   private int powerConsumption;
   private int numberOfSpeakers;
   private String frequencyRange;
@@ -68,9 +69,24 @@ public class Speakers implements Appliance, Serializable {
     return new Speakers().new Builder();
   }
 
-  public class Builder {
+  public class Builder extends Appliance.Builder{
 
     private Builder() {
+    }
+
+    public Builder setID(int id) {
+      super.setID(id);
+      return this;
+    }
+
+    public Builder setSellingPrice(double sellingPrice) {
+      super.setSellingPrice(sellingPrice);
+      return this;
+    }
+
+    public Builder setQuantity(int quantity) {
+      super.setQuantity(quantity);
+      return this;
     }
 
     public Builder setPowerConsumption(int powerConsumption) {

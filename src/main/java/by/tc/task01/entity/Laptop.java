@@ -1,9 +1,10 @@
 package by.tc.task01.entity;
 
+import by.tc.task01.entity.Oven.Builder;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class Laptop implements Appliance, Serializable {
+public class Laptop extends Appliance implements Serializable {
 
   private double batteryCapacity;
   private String OS;
@@ -15,8 +16,9 @@ public class Laptop implements Appliance, Serializable {
   private Laptop() {
   }
 
-  public Laptop(double batteryCapacity, String os, int memoryRom, int systemMemory, double cpu,
+  public Laptop(int id, double sellingPrice, int quantity, double batteryCapacity, String os, int memoryRom, int systemMemory, double cpu,
       int displayInches) {
+    super(id, sellingPrice, quantity);
     this.batteryCapacity = batteryCapacity;
     this.OS = os;
     this.memoryRom = memoryRom;
@@ -72,12 +74,15 @@ public class Laptop implements Appliance, Serializable {
   @Override
   public String toString() {
     return getClass().getSimpleName() + " : " +
+        "id=" + super.getId() +
         "batteryCapacity=" + batteryCapacity +
         ", OS='" + OS + '\'' +
         ", memoryRom=" + memoryRom +
         ", systemMemory=" + systemMemory +
         ", CPU=" + CPU +
         ", displayInches=" + displayInches +
+        ", sellingPrice=" + super.getSellingPrice() +
+        ", quantity=" + super.getQuantity() +
         ';';
   }
 
@@ -85,9 +90,24 @@ public class Laptop implements Appliance, Serializable {
     return new Laptop().new Builder();
   }
 
-  public class Builder {
+  public class Builder extends Appliance.Builder{
 
     private Builder() {
+    }
+
+    public Builder setID(int id) {
+      super.setID(id);
+      return this;
+    }
+
+    public Builder setSellingPrice(double sellingPrice) {
+      super.setSellingPrice(sellingPrice);
+      return this;
+    }
+
+    public Builder setQuantity(int quantity) {
+      super.setQuantity(quantity);
+      return this;
     }
 
     public Builder setBatteryCapacity(double batteryCapacity) {

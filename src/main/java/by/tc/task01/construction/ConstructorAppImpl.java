@@ -23,6 +23,9 @@ public final class ConstructorAppImpl implements ConstructorApp {
   public Appliance constructOven(Map<String, Object> map, Criteria criteria) {
     if (Oven.class.getSimpleName().equals(criteria.getGroupSearchName())) {
       appliance = Oven.newBuilder()
+          .setID(parseInt((String) map.get(SearchCriteria.Oven.ID.toString())))
+          .setSellingPrice(parseDouble((String) map.get(SearchCriteria.Oven.SELLING_PRICE.toString())))
+          .setQuantity(parseInt((String) map.get(SearchCriteria.Oven.QUANTITY.toString())))
           .setPowerConsumption(
               parseInt((String) map.get(SearchCriteria.Oven.POWER_CONSUMPTION.toString())))
           .setWeight(parseInt((String) map.get(SearchCriteria.Oven.WEIGHT.toString())))
@@ -39,6 +42,9 @@ public final class ConstructorAppImpl implements ConstructorApp {
   public Appliance constructTabletPC(Map<String, Object> map, Criteria criteria) {
     if (TabletPC.class.getSimpleName().equals(criteria.getGroupSearchName())) {
       appliance = TabletPC.newBuilder()
+          .setID(parseInt((String) map.get(SearchCriteria.TabletPC.ID.toString())))
+          .setSellingPrice(parseDouble((String) map.get(SearchCriteria.TabletPC.SELLING_PRICE.toString())))
+          .setQuantity(parseInt((String) map.get(SearchCriteria.TabletPC.QUANTITY.toString())))
           .setBatteryCapacity(
               parseInt((String) map.get(SearchCriteria.TabletPC.BATTERY_CAPACITY.toString())))
           .setDisplayInches(
@@ -56,6 +62,9 @@ public final class ConstructorAppImpl implements ConstructorApp {
   public Appliance constructLaptop(Map<String, Object> map, Criteria criteria) {
     if (Laptop.class.getSimpleName().equals(criteria.getGroupSearchName())) {
       appliance = Laptop.newBuilder()
+          .setID(parseInt((String) map.get(SearchCriteria.Laptop.ID.toString())))
+          .setSellingPrice(parseDouble((String) map.get(SearchCriteria.Laptop.SELLING_PRICE.toString())))
+          .setQuantity(parseInt((String) map.get(SearchCriteria.Laptop.QUANTITY.toString())))
           .setBatteryCapacity(
               parseDouble((String) map.get(SearchCriteria.Laptop.BATTERY_CAPACITY.toString())))
           .setOS((String) map.get(SearchCriteria.Laptop.OS.toString()))

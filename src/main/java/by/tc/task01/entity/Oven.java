@@ -3,7 +3,8 @@ package by.tc.task01.entity;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class Oven implements Appliance, Serializable {
+public class Oven extends Appliance implements Serializable {
+
   private int powerConsumption;
   private int weight;
   private int capacity;
@@ -14,8 +15,10 @@ public class Oven implements Appliance, Serializable {
   private Oven() {
   }
 
-  public Oven(int powerConsumption, int weight, int capacity, int depth, double height,
+  public Oven(int id, double sellingPrice, int quantity, int powerConsumption, int weight,
+      int capacity, int depth, double height,
       double width) {
+    super(id, sellingPrice, quantity);
     this.powerConsumption = powerConsumption;
     this.weight = weight;
     this.capacity = capacity;
@@ -71,12 +74,15 @@ public class Oven implements Appliance, Serializable {
   @Override
   public String toString() {
     return getClass().getSimpleName() + " : " +
+        "id=" + super.getId() +
         ", powerConsumption=" + powerConsumption +
         ", weight=" + weight +
         ", capacity=" + capacity +
         ", depth=" + depth +
         ", height=" + height +
         ", width=" + width +
+        ", sellingPrice=" + super.getSellingPrice() +
+        ", quantity=" + super.getQuantity() +
         ';';
   }
 
@@ -84,9 +90,24 @@ public class Oven implements Appliance, Serializable {
     return new Oven().new Builder();
   }
 
-  public class Builder{
+  public class Builder extends Appliance.Builder {
 
     private Builder() {
+    }
+
+    public Builder setID(int id) {
+      super.setID(id);
+      return this;
+    }
+
+    public Builder setSellingPrice(double sellingPrice) {
+      super.setSellingPrice(sellingPrice);
+      return this;
+    }
+
+    public Builder setQuantity(int quantity) {
+      super.setQuantity(quantity);
+      return this;
     }
 
     public Builder setPowerConsumption(int powerConsumption) {
@@ -124,5 +145,6 @@ public class Oven implements Appliance, Serializable {
     }
   }
 }
+
 
 

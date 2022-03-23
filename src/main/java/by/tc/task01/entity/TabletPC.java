@@ -3,7 +3,7 @@ package by.tc.task01.entity;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class TabletPC implements Appliance, Serializable {
+public class TabletPC extends Appliance implements Serializable {
   private int batteryCapacity;
   private int displayInches;
   private int memoryRom;
@@ -65,11 +65,14 @@ public class TabletPC implements Appliance, Serializable {
   @Override
   public String toString() {
     return getClass().getSimpleName() + " : " +
-        "batteryCapacity=" + batteryCapacity +
+        "id=" + super.getId() +
+        ", batteryCapacity=" + batteryCapacity +
         ", displayInches=" + displayInches +
         ", memoryRom=" + memoryRom +
         ", flashMemoryCapacity=" + flashMemoryCapacity +
         ", color='" + color + '\'' +
+        ", sellingPrice=" + super.getSellingPrice() +
+        ", quantity=" + super.getQuantity() +
         ';';
   }
 
@@ -77,9 +80,24 @@ public class TabletPC implements Appliance, Serializable {
     return new TabletPC().new Builder();
   }
 
-  public class Builder implements Appliance{
+  public class Builder extends Appliance.Builder{
 
     private Builder() {
+    }
+
+    public Builder setID(int id) {
+      super.setID(id);
+      return this;
+    }
+
+    public Builder setSellingPrice(double sellingPrice) {
+      super.setSellingPrice(sellingPrice);
+      return this;
+    }
+
+    public Builder setQuantity(int quantity) {
+      super.setQuantity(quantity);
+      return this;
     }
 
     public Builder setBatteryCapacity(int batteryCapacity) {
