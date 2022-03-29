@@ -1,9 +1,11 @@
 package by.tc.task01.entity;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Appliance {
+public class Appliance implements Serializable {
 
+  private static final long serialVersionUID = -902496891759373449L;
   private int id;
   private double sellingPrice;
   private int quantity;

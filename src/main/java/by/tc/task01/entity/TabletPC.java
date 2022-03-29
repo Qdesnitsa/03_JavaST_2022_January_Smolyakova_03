@@ -1,9 +1,10 @@
 package by.tc.task01.entity;
 
-import java.io.Serializable;
 import java.util.Objects;
 
-public class TabletPC extends Appliance implements Serializable {
+public class TabletPC extends Appliance {
+
+  private static final long serialVersionUID = 4654855715800489039L;
   private int batteryCapacity;
   private int displayInches;
   private int memoryRom;
@@ -85,16 +86,19 @@ public class TabletPC extends Appliance implements Serializable {
     private Builder() {
     }
 
+    @Override
     public Builder setID(int id) {
       super.setID(id);
       return this;
     }
 
+    @Override
     public Builder setSellingPrice(double sellingPrice) {
       super.setSellingPrice(sellingPrice);
       return this;
     }
 
+    @Override
     public Builder setQuantity(int quantity) {
       super.setQuantity(quantity);
       return this;
@@ -125,6 +129,7 @@ public class TabletPC extends Appliance implements Serializable {
       return this;
     }
 
+    @Override
     public TabletPC build() {
       return TabletPC.this;
     }

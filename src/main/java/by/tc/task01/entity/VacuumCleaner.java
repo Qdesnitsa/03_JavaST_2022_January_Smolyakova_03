@@ -1,9 +1,10 @@
 package by.tc.task01.entity;
 
-import java.io.Serializable;
 import java.util.Objects;
 
-public class VacuumCleaner extends Appliance implements Serializable {
+public class VacuumCleaner extends Appliance {
+
+  private static final long serialVersionUID = 1061895506077096961L;
   private int powerConsumption;
   private String filterType;
   private String bagType;
@@ -89,16 +90,19 @@ public class VacuumCleaner extends Appliance implements Serializable {
     private Builder() {
     }
 
+    @Override
     public Builder setID(int id) {
       super.setID(id);
       return this;
     }
 
+    @Override
     public Builder setSellingPrice(double sellingPrice) {
       super.setSellingPrice(sellingPrice);
       return this;
     }
 
+    @Override
     public Builder setQuantity(int quantity) {
       super.setQuantity(quantity);
       return this;
@@ -134,6 +138,7 @@ public class VacuumCleaner extends Appliance implements Serializable {
       return this;
     }
 
+    @Override
     public VacuumCleaner build() {
       return VacuumCleaner.this;
     }

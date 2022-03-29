@@ -15,10 +15,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-public class ApplianceDAOImpl implements ApplianceDAO {
+public final class ApplianceDAOImpl implements ApplianceDAO {
 
 	private static final String APPS_FILE = "appliances_db.txt";
 	private static BufferedReader reader;
+	private static File file;
+	private static FileReader fileReader;
 	private static Map<String, Object> properAppFromDB = new HashMap<>();
 
 	@Override
@@ -29,9 +31,9 @@ public class ApplianceDAOImpl implements ApplianceDAO {
 		List<Appliance> appliances = new ArrayList<>();
 
 		try {
-			File file = new File(filePath);
-			FileReader fr = new FileReader(file);
-			reader = new BufferedReader(fr);
+			file = new File(filePath);
+			fileReader = new FileReader(file);
+			reader = new BufferedReader(fileReader);
 			String line;
 			while (reader.ready()) {
 				line = reader.readLine();
@@ -41,14 +43,14 @@ public class ApplianceDAOImpl implements ApplianceDAO {
 				}
 			}
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			throw new RuntimeException("Check file path to appliances_db.txt. File is not fount", e);
 		} catch (IOException e) {
-			e.printStackTrace();
+			throw new RuntimeException("Error in getting data from file", e);
 		} finally {
 			try {
 				reader.close();
 			} catch (IOException e) {
-				e.printStackTrace();
+				throw new RuntimeException("Error in closing BufferedReader", e);
 			}
 		}
 		return appliances;
@@ -56,8 +58,9 @@ public class ApplianceDAOImpl implements ApplianceDAO {
 
 	public String obtainFirstWord(String line) {
 		String word = "";
+		char space = ' ';
 		if (!line.isEmpty()) {
-			int i = line.indexOf(' ');
+			int i = line.indexOf(space);
 			word = line.substring(0, i);
 		}
 		return word;

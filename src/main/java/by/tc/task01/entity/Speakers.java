@@ -1,9 +1,10 @@
 package by.tc.task01.entity;
 
-import java.io.Serializable;
 import java.util.Objects;
 
-public class Speakers extends Appliance implements Serializable {
+public class Speakers extends Appliance {
+
+  private static final long serialVersionUID = -4103576752046055205L;
   private int powerConsumption;
   private int numberOfSpeakers;
   private String frequencyRange;
@@ -73,16 +74,19 @@ public class Speakers extends Appliance implements Serializable {
     private Builder() {
     }
 
+    @Override
     public Builder setID(int id) {
       super.setID(id);
       return this;
     }
 
+    @Override
     public Builder setSellingPrice(double sellingPrice) {
       super.setSellingPrice(sellingPrice);
       return this;
     }
 
+    @Override
     public Builder setQuantity(int quantity) {
       super.setQuantity(quantity);
       return this;
@@ -108,6 +112,7 @@ public class Speakers extends Appliance implements Serializable {
       return this;
     }
 
+    @Override
     public Speakers build() {
       return Speakers.this;
     }

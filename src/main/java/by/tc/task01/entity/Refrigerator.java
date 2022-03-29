@@ -1,9 +1,10 @@
 package by.tc.task01.entity;
 
-import java.io.Serializable;
 import java.util.Objects;
 
-public class Refrigerator extends Appliance implements Serializable {
+public class Refrigerator extends Appliance {
+
+  private static final long serialVersionUID = -9168309879451987502L;
   private int powerConsumption;
   private int weight;
   private int freezerCapacity;
@@ -89,16 +90,19 @@ public class Refrigerator extends Appliance implements Serializable {
     private Builder() {
     }
 
+    @Override
     public Builder setID(int id) {
       super.setID(id);
       return this;
     }
 
+    @Override
     public Builder setSellingPrice(double sellingPrice) {
       super.setSellingPrice(sellingPrice);
       return this;
     }
 
+    @Override
     public Builder setQuantity(int quantity) {
       super.setQuantity(quantity);
       return this;
@@ -134,6 +138,7 @@ public class Refrigerator extends Appliance implements Serializable {
       return this;
     }
 
+    @Override
     public Refrigerator build() {
       return Refrigerator.this;
     }

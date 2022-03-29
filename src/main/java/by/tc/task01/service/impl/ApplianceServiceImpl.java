@@ -9,7 +9,7 @@ import by.tc.task01.service.validation.Validator;
 import java.util.Collections;
 import java.util.List;
 
-public class ApplianceServiceImpl implements ApplianceService{
+public final class ApplianceServiceImpl implements ApplianceService{
 
 	@Override
 	public List<Appliance> find(Criteria criteria) {

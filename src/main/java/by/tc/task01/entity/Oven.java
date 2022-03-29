@@ -1,10 +1,10 @@
 package by.tc.task01.entity;
 
-import java.io.Serializable;
 import java.util.Objects;
 
-public class Oven extends Appliance implements Serializable {
+public class Oven extends Appliance{
 
+  private static final long serialVersionUID = -3576810555810033208L;
   private int powerConsumption;
   private int weight;
   private int capacity;
@@ -95,16 +95,19 @@ public class Oven extends Appliance implements Serializable {
     private Builder() {
     }
 
+    @Override
     public Builder setID(int id) {
       super.setID(id);
       return this;
     }
 
+    @Override
     public Builder setSellingPrice(double sellingPrice) {
       super.setSellingPrice(sellingPrice);
       return this;
     }
 
+    @Override
     public Builder setQuantity(int quantity) {
       super.setQuantity(quantity);
       return this;
@@ -140,6 +143,7 @@ public class Oven extends Appliance implements Serializable {
       return this;
     }
 
+    @Override
     public Oven build() {
       return Oven.this;
     }

@@ -82,7 +82,17 @@ public final class ConstructorAppImpl implements ConstructorApp {
   @Override
   public Appliance constructRefrigerator(Map<String, Object> map, Criteria criteria) {
     if (Refrigerator.class.getSimpleName().equals(criteria.getGroupSearchName())) {
-      //...
+      appliance = Refrigerator.newBuilder()
+          .setID(parseInt((String) map.get(SearchCriteria.Refrigerator.ID.toString())))
+          .setSellingPrice(parseDouble((String) map.get(SearchCriteria.Refrigerator.SELLING_PRICE.toString())))
+          .setQuantity(parseInt((String) map.get(SearchCriteria.Refrigerator.QUANTITY.toString())))
+          .setPowerConsumption(parseInt((String) map.get(SearchCriteria.Refrigerator.POWER_CONSUMPTION.toString())))
+          .setWeight(parseInt((String) map.get(SearchCriteria.Refrigerator.WEIGHT.toString())))
+          .setFreezerCapacity(parseInt((String) map.get(SearchCriteria.Refrigerator.FREEZER_CAPACITY.toString())))
+          .setOverallCapacity(parseDouble((String) map.get(SearchCriteria.Refrigerator.OVERALL_CAPACITY.toString())))
+          .setHeight(parseInt((String) map.get(SearchCriteria.Refrigerator.HEIGHT.toString())))
+          .setWidth(parseInt((String) map.get(SearchCriteria.Refrigerator.WIDTH.toString())))
+          .build();
     }
     return appliance;
   }
@@ -90,7 +100,15 @@ public final class ConstructorAppImpl implements ConstructorApp {
   @Override
   public Appliance constructSpeakers(Map<String, Object> map, Criteria criteria) {
     if (Speakers.class.getSimpleName().equals(criteria.getGroupSearchName())) {
-      //...
+      appliance = Speakers.newBuilder()
+          .setID(parseInt((String) map.get(SearchCriteria.Speakers.ID.toString())))
+          .setSellingPrice(parseDouble((String) map.get(SearchCriteria.Speakers.SELLING_PRICE.toString())))
+          .setQuantity(parseInt((String) map.get(SearchCriteria.Speakers.QUANTITY.toString())))
+          .setPowerConsumption(parseInt((String) map.get(SearchCriteria.Speakers.POWER_CONSUMPTION.toString())))
+          .setNumberOfSpeakers(parseInt((String) map.get(SearchCriteria.Speakers.NUMBER_OF_SPEAKERS.toString())))
+          .setFrequencyRange((String) map.get(SearchCriteria.Speakers.FREQUENCY_RANGE.toString()))
+          .setCordLength(parseInt((String) map.get(SearchCriteria.Speakers.CORD_LENGTH.toString())))
+          .build();
     }
     return appliance;
   }
@@ -98,7 +116,17 @@ public final class ConstructorAppImpl implements ConstructorApp {
   @Override
   public Appliance constructVacuumCleaner(Map<String, Object> map, Criteria criteria) {
     if (VacuumCleaner.class.getSimpleName().equals(criteria.getGroupSearchName())) {
-      //...
+      appliance = VacuumCleaner.newBuilder()
+          .setID(parseInt((String) map.get(SearchCriteria.VacuumCleaner.ID.toString())))
+          .setSellingPrice(parseDouble((String) map.get(SearchCriteria.VacuumCleaner.SELLING_PRICE.toString())))
+          .setQuantity(parseInt((String) map.get(SearchCriteria.VacuumCleaner.QUANTITY.toString())))
+          .setPowerConsumption(parseInt((String) map.get(SearchCriteria.VacuumCleaner.ID.toString())))
+          .setFilterType((String) map.get(SearchCriteria.VacuumCleaner.FILTER_TYPE.toString()))
+          .setBagType((String) map.get(SearchCriteria.VacuumCleaner.BAG_TYPE.toString()))
+          .setWandType((String) map.get(SearchCriteria.VacuumCleaner.WAND_TYPE.toString()))
+          .setMotorSpeedRegulation(parseInt((String) map.get(SearchCriteria.VacuumCleaner.MOTOR_SPEED_REGULATION.toString())))
+          .setCleaningWidth(parseInt((String) map.get(SearchCriteria.VacuumCleaner.CLEANING_WIDTH.toString())))
+          .build();
     }
     return appliance;
   }
