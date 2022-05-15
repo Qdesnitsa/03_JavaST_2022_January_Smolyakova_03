@@ -1,6 +1,6 @@
 package by.tc.task01.dao.impl;
 
-import static by.tc.task01.construction.ConstructorAppImpl.*;
+import by.tc.task01.construction.TypesConstructionHandler;
 import by.tc.task01.dao.ApplianceDAO;
 import by.tc.task01.entity.*;
 import by.tc.task01.entity.criteria.Criteria;
@@ -37,9 +37,9 @@ public final class ApplianceDAOImpl implements ApplianceDAO {
 			String line;
 			while (reader.ready()) {
 				line = reader.readLine();
-				properAppFromDB = makeMap(line,criteria);
-					if (!properAppFromDB.isEmpty() && criteria.compareMaps(properAppFromDB)) {
-						initAppliance(appliances,criteria, properAppFromDB);
+				properAppFromDB = makeMap(line, criteria);
+				if (!properAppFromDB.isEmpty() && criteria.compareMaps(properAppFromDB)) {
+					initAppliance(appliances, criteria, properAppFromDB);
 				}
 			}
 		} catch (FileNotFoundException e) {
@@ -66,10 +66,9 @@ public final class ApplianceDAOImpl implements ApplianceDAO {
 		return word;
 	}
 
-
 	private static final String SIGNS_TO_REPLACE = "(;|:|=|,|\\s)+";
 	private static final String NEW_DELIMETER = " ";
-	public Map<String,Object> makeMap(String line, Criteria criteria) {
+	public Map<String, Object> makeMap(String line, Criteria criteria) {
 		Map<String, Object> paramsValuesDB = new HashMap<>();
 		if (criteria.compareGroupName(obtainFirstWord(line))) {
 			String[] parameters = line.replaceAll(SIGNS_TO_REPLACE, NEW_DELIMETER).split(NEW_DELIMETER);
@@ -80,18 +79,10 @@ public final class ApplianceDAOImpl implements ApplianceDAO {
 		return paramsValuesDB;
 	}
 
-	private static final Map<String, Object> PROPER_APP_CREATION = new HashMap<>();
-	public List<Appliance> initAppliance(List<Appliance> appliances, Criteria criteria, Map<String,Object> map) {
-		{
-			PROPER_APP_CREATION.put(Oven.class.getSimpleName(),getInstance().constructOven(map,criteria));
-			PROPER_APP_CREATION.put(TabletPC.class.getSimpleName(),getInstance().constructTabletPC(map,criteria));
-			PROPER_APP_CREATION.put(Laptop.class.getSimpleName(),getInstance().constructLaptop(map,criteria));
-			PROPER_APP_CREATION.put(Refrigerator.class.getSimpleName(),getInstance().constructRefrigerator(map,criteria));
-			PROPER_APP_CREATION.put(Speakers.class.getSimpleName(),getInstance().constructSpeakers(map,criteria));
-			PROPER_APP_CREATION.put(VacuumCleaner.class.getSimpleName(),getInstance().constructVacuumCleaner(map,criteria));
-		}
-
-			appliances.add((Appliance) PROPER_APP_CREATION.get(criteria.getGroupSearchName()));
+	public List<Appliance> initAppliance(List<Appliance> appliances, Criteria criteria,
+			Map<String, Object> map) {
+		var type = new TypesConstructionHandler();
+		appliances.add(type.getType(criteria.getGroupSearchName()).constructAppliance(map,criteria));
 		return appliances;
 	}
 }

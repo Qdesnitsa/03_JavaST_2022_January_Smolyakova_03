@@ -9,7 +9,7 @@ import java.util.List;
 
 public class Main {
 
-	public static void main(String[] args) throws IllegalAccessException {
+	public static void main(String[] args) {
 		List<Appliance> appliance;
 
 		ServiceFactory factory = ServiceFactory.getInstance();
